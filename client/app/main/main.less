@@ -1,3 +1,13 @@
+/* FontAwesome for working BootSnippet :> */
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+/**
+ * Variable declarations
+ */
+@transparent: transparent;
+@gold: gold;
+/** End of variable declarations */
+
 .thing-form {
   margin: 20px 0;
 }
@@ -24,4 +34,82 @@
 
 .navbar-text {
   margin-left: 15px;
+}
+
+.glyphicon {
+  margin-right: 5px;
+}
+
+.thumbnail {
+  margin-bottom: 20px;
+  padding: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.nopadding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.nomargin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.item.list-group-item {
+  float: none;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 10px;
+  &:nth-of-type(odd) {
+    &:hover {
+      background: rgba(66, 171, 202, 0.12);
+    }
+    background: #eeeeee;
+  }
+  &:hover {
+    background: rgba(66, 171, 202, 0.12);
+  }
+  .list-group-image {
+    margin-right: 10px;
+  }
+  .thumbnail {
+    margin-bottom: 0px;
+  }
+  .caption {
+    padding: 9px 9px 0px 9px;
+  }
+  &:before {
+    display: table;
+    content: " ";
+  }
+  &:after {
+    display: table;
+    content: " ";
+    clear: both;
+  }
+  img {
+    float: left;
+  }
+}
+
+.list-group-item-text {
+  margin: 0 0 11px;
+}
+
+/*
+  Ratings Stars
+*/
+.rating-stars {
+  .fa-star {
+    color: gold;
+  }
+}
+
+@media (max-width: 991px) {
+  .filters {
+    float: inherit !important;
+  }
 }

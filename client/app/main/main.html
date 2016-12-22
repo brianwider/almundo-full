@@ -1,18 +1,92 @@
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <h1>Almundooo!</h1>
+    <p class="lead">Lista de Hoteles</p>
+    <img src="assets/images/logo-almundo.svg" alt="Al Mundo">
   </div>
 </header>
+<div class="row">
+
+</div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
+  <div class="well well-sm">
+    <strong>Vista</strong>
+    <div class="btn-group">
+      <a href="#" ng-click="$ctrl.displayGrid = false" id="list" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th-list"></span>Lista
+      </a>
+      <a href="#" ng-click="$ctrl.displayGrid = true" id="grid" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th"></span>Grilla
+      </a>
+    </div>
+    <div class="input-group pull-right col-md-2 col-sm-12 col-xs-12 filters">
+      <input class="form-control" type="text" ng-model="search.name" placeholder="Buscar por nombre" />
+    </div>
+    <div class="input-group pull-right col-md-2 col-sm-12 col-xs-12 filters">
+      <input class="form-control" type="number" ng-model="maxPrice" placeholder="Máximo de precio" />
+    </div>
+    <div class="input-group pull-right col-md-2 col-sm-12 col-xs-12 filters">
+      <select class="form-control" ng-model="search.stars">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
+  <div id="products" class="row list-group"
+       ng-class="{ 'nomargin' : !$ctrl.displayGrid }">
+    <div class="item col-xs-12 col-sm-4 col-md-4 col-lg-4"
+         ng-class="{ 'list-group-item' : !$ctrl.displayGrid, 'grid-group-item' : $ctrl.displayGrid }"
+         ng-repeat="product in $ctrl.products | orderBy : '-stars' | filter:search:strict | filter:byRange">
+      <div class="thumbnail">
+        <img class="group list-group-image"
+             ng-class="{ 'col-md-3 nopadding' : !$ctrl.displayGrid }"
+             ng-src="assets/images/{{product.image}}"
+             alt="{{ product.name }}" />
+        <div class="caption">
+          <h4 class="group inner list-group-item-heading">
+            {{ product.name }}
+          </h4>
+          <p class="group inner list-group-item-text">
+            {{ product.description }}
+          </p>
+          <p class="group inner">
+            <div class="rating-stars">
+              <i class="fa"
+                 ng-class="{ 'fa-star' : product.stars > 0, 'fa-star-o' : product.stars <= 0 }"
+                 aria-hidden="true"></i>
+              <i class="fa"
+                 ng-class="{ 'fa-star' : product.stars > 1, 'fa-star-o' : product.stars < 2 }"
+                 aria-hidden="true"></i>
+              <i class="fa"
+                 ng-class="{ 'fa-star' : product.stars > 2, 'fa-star-o' : product.stars < 3 }"
+                 aria-hidden="true"></i>
+              <i class="fa"
+                 ng-class="{ 'fa-star' : product.stars > 3, 'fa-star-o' : product.stars < 4 }"
+                 aria-hidden="true"></i>
+              <i class="fa"
+                 ng-class="{ 'fa-star' : product.stars > 4, 'fa-star-o' : product.stars < 5 }"
+                 aria-hidden="true"></i>
+            </div>
+          </p>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <p class="lead">
+                ${{ product.price }}
+              </p>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <a class="btn btn-success" href="#">Agregar a carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" ng-show="($ctrl.products | filter:search:strict | filter:byRange).length == 0">
+      <i>No se han encontrado resultados.</i>
     </div>
   </div>
 </div>
